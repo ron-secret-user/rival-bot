@@ -1,6 +1,6 @@
 require('dotenv-flow').config()
 
-const { conversationLength } = require('./config')
+const { conversationLength, name, email } = require('./config')
 const log = require('./utils/logger')
 const parseMessages = require('./utils/parse')
 
@@ -8,16 +8,13 @@ const { getMessages, getConversationId, registerUser, respondToBot } = require('
 
 const inmemory = require('./db')
 
-const username = 'elon musk'
-const email = 'elonmusk@example.com'
-
 async function main() {
   let tries = 0
   let success = 0
   let i = 0
 
   try {
-    const userId = await registerUser(username, email)
+    const userId = await registerUser(name, email)
     const conversationId = await getConversationId(userId)
     const messages = await getMessages(conversationId)
 
@@ -32,8 +29,10 @@ async function main() {
     while (i < conversationLength) {
       const nextMessage = await getMessages(conversationId)
       log.bot(`${i}:: nextMessage`, nextMessage)
+      
       const answer = parseMessages(nextMessage)
       log.bot(`${i}:: answer`, answer)
+      
       const response = await respondToBot(conversationId, answer)
       log.bot(`${i}:: response`, response)
 
