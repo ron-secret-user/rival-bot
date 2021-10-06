@@ -1,0 +1,19 @@
+{
+  "name": "rival-technology-bot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "NODE_ENV=development node app"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13",
+    "prettier": "^2.4.1"
+  },
+  "dependencies": {
+    "axios": "0.22.0",
+    "bunyan": "1.8.15",
+    "dotenv": "10.0.0",
+    "dotenv-flow": "3.2.0"
+  }
+}
